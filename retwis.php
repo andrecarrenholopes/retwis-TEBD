@@ -134,6 +134,38 @@ function showUserPostsWithPagination($username,$userid,$start,$count) {
         echo("<div class=\"rightlink\">$prevlink $nextlink</div>");
 }
 
+function showHashtagPostsWithPagination($username,$userid,$start,$count) {
+	global $_SERVER;
+    $thispage = $_SERVER['PHP_SELF'];
+
+    $navlink = "";
+    $next = $start+10;
+    $prev = $start-10;
+    $nextlink = $prevlink = false;
+    if ($prev < 0) $prev = 0;
+	
+	$u = $username ? "&u=".urlencode($username) : "";
+    if (showHashtagPosts($userid,$start,$count))
+        $nextlink = "<a href=\"$thispage?start=$next".$u."\">Older posts &raquo;</a>";
+    if ($start > 0) {
+        $prevlink = "<a href=\"$thispage?start=$prev".$u."\">&laquo; Newer posts</a>".($nextlink ? " | " : "");
+    }
+    if ($nextlink || $prevlink)
+        echo("<div class=\"rightlink\">$prevlink $nextlink</div>");
+}
+
+function showHashtagPosts($hashtag,$start,$count) {
+    $r = redisLink();
+    //$key = ($userid == -1) ? "timeline" : "posts:$userid";
+    $posts = $r->lrange("hashtag:$hashtag",$start,$start+$count);
+    $c = 0;
+    foreach($posts as $p) {
+        if (showPost($p)) $c++;
+        if ($c == $count) break;
+    }
+    return count($posts) == $count+1;
+}
+
 function showLastUsers() {
     $r = redisLink();
     $users = $r->zrevrange("users_by_time",0,9);

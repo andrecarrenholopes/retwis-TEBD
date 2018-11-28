@@ -20,6 +20,20 @@ foreach($followers as $fid) {
 # newest 1000 elements.
 $r->lpush("timeline",$postid);
 $r->ltrim("timeline",0,1000);
+$hashtag;
+# Find the hashtag and push the posts 
+$pos = strpos($status, '#');
+if ($pos !== false) {
+	$fim = strpos($status, ' ', $pos);
+	if ($fim !== false) {
+		$statusLen = strlen(utf8_decode($status));
+		$pos = $pos  +1;
+		$hashtag = substr($status, $pos, $fim - $statusLen);
+		$r->lpush("hashtags",$hashtag);
+		#records the hashtag in redis
+		$r->lpush("hashtag:$hashtag", $postid);
+	}
+}
 
-header("Location: index.php");
+header("Location: index.php#$hashtag");
 ?>
