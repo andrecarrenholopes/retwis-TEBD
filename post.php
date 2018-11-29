@@ -25,6 +25,14 @@ $hashtag;
 $pos = strpos($status, '#');
 if ($pos !== false) {
 	$fim = strpos($status, ' ', $pos);
+	preg_match_all('/(\A|\s)#(\w+)/', $status, $matches);
+	
+	$matches = $matches[2];
+	foreach($matches as $match) {
+		$r->lpush("hashtags",$match);
+		$r->lpush("hashtag:$match", $postid);
+	}
+	/*
 	if ($fim !== false) {
 		$statusLen = strlen(utf8_decode($status));
 		$pos = $pos  +1;
@@ -33,7 +41,8 @@ if ($pos !== false) {
 		#records the hashtag in redis
 		$r->lpush("hashtag:$hashtag", $postid);
 	}
+	*/
 }
 
-header("Location: index.php#$hashtag");
+header("Location: index.php#$teste");
 ?>

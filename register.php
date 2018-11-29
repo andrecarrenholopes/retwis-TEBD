@@ -3,16 +3,16 @@ include("retwis.php");
 
 # Form sanity checks
 if (!gt("username") || !gt("password") || !gt("password2"))
-    goback("Every field of the registration form is needed!");
+    goback("Preenche tudo! TUDO!");
 if (gt("password") != gt("password2"))
-    goback("The two password fileds don't match!");
+    goback("Tem alguma parada diferente na senha ai");
 
 # The form is ok, check if the username is available
 $username = gt("username");
 $password = gt("password");
 $r = redisLink();
 if ($r->hget("users",$username))
-    goback("Sorry the selected username is already in use.");
+    goback("Já tem um Usuario, escolhe outro.");
 
 # Everything is ok, Register the user!
 $userid = $r->incr("next_user_id");

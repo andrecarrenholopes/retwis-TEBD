@@ -2,7 +2,7 @@
 <html lang="it">
 <head>
 <meta content="text/html; charset=UTF-8" http-equiv="content-type">
-<title>Twitter Pistola</title>
+<title>Tuiter Pistola</title>
 <link href="css/style.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
@@ -12,7 +12,7 @@
 <a href="/">
 	<img style="border:none" src="logo.png" height="85" alt="Retwis">
 	<h2 class="title">
-		Twitter Pistola</h2>
+		Tuiter Pistola</h2>
 </a>
 <? include("navbar.php") ?>
 </div>

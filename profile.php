@@ -10,11 +10,11 @@ if (!gt("u") || !($userid = $r->hget("users",gt("u")))) {
 echo("<div class=\"container-photo\"><img class=\"profilephoto\" src=\"https://conteudo.imguol.com.br/blogs/3/files/2014/06/ret_neymar.png\"></div>");
 echo("<h2 class=\"username\">".utf8entities(gt("u"))."</h2>");
 if (isLoggedIn() && $User['id'] != $userid) {
-    $isfollowing = $r->zscore("following:".$User['id'],$userid);
+    $isfollowing = $r->zscore("seguindo:".$User['id'],$userid);
     if (!$isfollowing) {
-        echo("<a href=\"follow.php?uid=$userid&f=1\" class=\"button\">Follow this user</a>");
+        echo("<a href=\"follow.php?uid=$userid&f=1\" class=\"button\">Seguir individuo</a>");
     } else {
-        echo("<a href=\"follow.php?uid=$userid&f=0\" class=\"button\">Stop following</a>");
+        echo("<a href=\"follow.php?uid=$userid&f=0\" class=\"button\">Parar de seguir</a>");
     }
 }
 else {

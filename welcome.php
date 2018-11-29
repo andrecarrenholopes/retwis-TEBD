@@ -1,7 +1,7 @@
 <div id="welcomebox">
 <div id="registerbox">
 <h2>Registre-se!</h2>
-<b>Quer testar o Twitter Pistola? Crie uma conta!</b>
+<b>Quer testar o Tuiter Pistola? Crie uma conta!</b>
 <form method="POST" action="register.php">
 <table>
 <tr>
@@ -28,13 +28,34 @@
 </tr></table>
 </form>
 </div>
-Olá! O Twitter Pistola é um clone muito simples do <a href="http://twitter.com">Twitter</a>, como uma demonstração para o banco de dados de valor-chave Redis. Pontos chave:
+Bem vindo! O Tuiter Pistola é um clone do Twitter, utilizando o banco de dados de chave-valor Redis.
+<p>
+<center> <br>Fala Galerinha do mal </center>
+<pre>
+
+</pre>
 <ul>
-<li>O Redis é um banco de dados de valor-chave e é o único banco de dados usado por este aplicativo, não é um MySQL ou semelhante.</li>
-<li>Esse aplicativo pode ser dimensionado horizontalmente, pois não há ponto em que todo o conjunto de dados seja necessário no mesmo ponto. Com o hashing consistente (não implementado na demonstração para torná-lo mais simples), chaves diferentes podem ser armazenadas em servidores diferentes.</li>
-<li>O PHP e o servidor Redis se comunicam usando o cliente de biblioteca Redis do PHP escrito por Ludovico Mangocavallo e incluído dentro da distribuição Redis tar.gz.</li>
-<li>Este aplicativo é um trabalho para a disciplina Tópicos Especiais em Bancos de Dados</li>
+<li>Se cadastra aqui. É rapidão, só usuário e senha. E senha de novo. Dai é só clicar em "Criar conta"<p></li>
+<center> <p>Tá pronto o sorvetinho!<br></center>
+<pre>
+
+
+
+</pre>
+<li>Caaaaaso, tu já seja um USUARIO.<br></li>
+<center> <p> Logai<br></center>
 </ul>
+
+<pre>
+
+
+<ul>
+<li>Andre Carrenho Lopes 9065681
+<li>Fernando Fujimoto Inoue 9004421
+</ul>
+</pre>
+
+
 </div>
 
 

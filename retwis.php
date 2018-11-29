@@ -97,7 +97,15 @@ function showPost($id) {
     $elapsed = strElapsed($post['time']);
     $userlink = "<a class=\"username\" href=\"profile.php?u=".urlencode($username)."\">".utf8entities($username)."</a>";
 
-    echo('<div class="post">'.$userlink.' '.utf8entities($post['body'])."<br>");
+	//hashtag
+	$body = $post['body'];
+	$pos = strpos($body, '#');
+	if ($pos !== false) {
+		//echo ('<div>'.$pos.'</div>');
+		$body = preg_replace('/(\A|\s)#(\w+)/', ' <a class="hashtag" href="search.php?search=$2">$0</a> ', $body);
+	}
+		
+    echo('<div class="post">'.$userlink.' '.$body."<br>");
     echo('<i>posted '.$elapsed.' ago via web</i></div>');
     return true;
 }
