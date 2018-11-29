@@ -87,7 +87,7 @@ function strElapsed($t) {
     return "$d day".($d > 1 ? "s" : "");
 }
 
-function showPost($id) {
+function showPost($id,$useridorigin) {
     $r = redisLink();
     $post = $r->hgetall("post:$id");
     if (empty($post)) return false;
@@ -101,11 +101,18 @@ function showPost($id) {
 	$body = $post['body'];
 	$pos = strpos($body, '#');
 	if ($pos !== false) {
-		//echo ('<div>'.$pos.'</div>');
 		$body = preg_replace('/(\A|\s)#(\w+)/', ' <a class="hashtag" href="search.php?search=$2">$0</a> ', $body);
 	}
-		
+	
     echo('<div class="post">'.$userlink.' '.$body."<br>");
+	global $User;
+	
+	//echo $User['id'];
+	//Delete
+	if($User['id'] == $useridorigin) {
+		//echo ('<div class="option"><a href="deletepost.php?postid='.$id.'" class="button button-apagar">Apagar post</a></div>');
+		echo ('<form method="POST" action="deletepost.php">	<input type="hidden" value="'.$useridorigin.'" name="userid"><input type="hidden" value="'.$id.'" name="postid"><input type="submit" name="doit" value="Apagar" class="button-apagar"></form>');
+	}
     echo('<i>posted '.$elapsed.' ago via web</i></div>');
     return true;
 }
@@ -116,7 +123,7 @@ function showUserPosts($userid,$start,$count) {
     $posts = $r->lrange($key,$start,$start+$count);
     $c = 0;
     foreach($posts as $p) {
-        if (showPost($p)) $c++;
+        if (showPost($p,$userid)) $c++;
         if ($c == $count) break;
     }
     return count($posts) == $count+1;
@@ -168,7 +175,7 @@ function showHashtagPosts($hashtag,$start,$count) {
     $posts = $r->lrange("hashtag:$hashtag",$start,$start+$count);
     $c = 0;
     foreach($posts as $p) {
-        if (showPost($p)) $c++;
+        if (showPost($p,-1)) $c++;
         if ($c == $count) break;
     }
     return count($posts) == $count+1;

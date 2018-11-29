@@ -21,6 +21,7 @@ if (isLoggedIn() && $User['id'] != $userid) {
 ?>
 <?
 $start = gt("start") === false ? 0 : intval(gt("start"));
-showHashtagPosts(gt("search"),$start,10);
+$hashtag = str_replace('#', '', utf8entities(gt("search")));
+showHashtagPosts($hashtag,$start,10);
 include("footer.php")
 ?>

@@ -44,5 +44,5 @@ if ($pos !== false) {
 	*/
 }
 
-header("Location: index.php#$teste");
+header("Location: index.php");
 ?>

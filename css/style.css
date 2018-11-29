@@ -1,7 +1,14 @@
 BODY {
     font-family: Comic Sans MS, Comic Sans MS;
-    background: url(/background.png) repeat-x top green;
+    /*background: repeat-x top green;
     background-attachment: fixed;
+	*/
+	background: #008000; /* Old browsers */
+	background: -moz-linear-gradient(45deg, #008000 0%, #00f9bf 100%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(45deg, #008000 0%,#00f9bf 100%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(45deg, #008000 0%,#00f9bf 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#008000', endColorstr='#00f9bf',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+	height: -webkit-fill-available;
 }
 
 #page {
@@ -174,4 +181,7 @@ img.profilephoto {
     margin-right: 10px;
 }
 
-
+ .button-apagar {
+    background-color: #f76565;
+	margin-left: 0;
+}
